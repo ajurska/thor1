@@ -12,7 +12,7 @@ importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js');
                 const messaging = firebase.messaging();
                 
                 messaging.setBackgroundMessageHandler(function(payload) {
-                  console.log('[firebase-messaging-sw.js] Received background message ', payload);
+                  console.log('[https://ajurska.github.io/thor1/firebase-messaging-sw.js] Received background message ', payload);
                   // Customize notification here
                   const notificationTitle = 'Background Message Title';
                   const notificationOptions = {
