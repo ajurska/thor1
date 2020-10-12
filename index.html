@@ -41,13 +41,10 @@
                 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
                 <script>
                 $(document).ready(function() {
-                     var browser = "<?php echo $user_browser?>";
+
                     var browser_language = navigator.language;
                     var domain = window.location.hostname;
-                    var os = "<?php echo $user_os;?>";
                     var publisher_id = "2";
-                    var ip = "<?php echo $ip;?>";
-                    var timestamp = "<?php echo $timestamp;?>";
                     var user_agent = navigator.userAgent;
                     
                     var config = {
@@ -69,7 +66,7 @@
                             url: 'collect-push.php',
                             
                             type: 'post',
-                            data: { browser: browser , browser_language: browser_language , timestamp: timestamp , token: token , domain: domain , ip: ip , os: os ,  publisher_id: publisher_id , user_agent: user_agent},
+                            data: { browser_language: browser_language , token: token , domain: domain , publisher_id: publisher_id , user_agent: user_agent},
                             success: function(data) {
                                
                                      }
