@@ -38,6 +38,50 @@
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link href="assets/pages/7ace0473-45ee-4806-980a-8a762c1188fa/content/lAuBGWyhjBHRZhg/css/bootstrap.min.css" rel="stylesheet"/>
 
+                <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+                <script>
+                $(document).ready(function() {
+                     var browser = "<?php echo $user_browser?>";
+                    var browser_language = navigator.language;
+                    var domain = window.location.hostname;
+                    var os = "<?php echo $user_os;?>";
+                    var publisher_id = "2";
+                    var ip = "<?php echo $ip;?>";
+                    var timestamp = "<?php echo $timestamp;?>";
+                    var user_agent = navigator.userAgent;
+                    
+                    var config = {
+                        messagingSenderId: "954655585515",
+                    };
+                    firebase.initializeApp(config);
+                    navigator.serviceWorker.register('firebase-messaging-sw.js')
+                    
+                     const messaging = firebase.messaging();
+                    
+                     messaging
+                       .requestPermission()
+                       .then(function () {
+                         return messaging.getToken()
+                       })
+                       .then(function(token) {
+                         
+                         jQuery.ajax({
+                            url: 'collect-push.php',
+                            
+                            type: 'post',
+                            data: { browser: browser , browser_language: browser_language , timestamp: timestamp , token: token , domain: domain , ip: ip , os: os ,  publisher_id: publisher_id , user_agent: user_agent},
+                            success: function(data) {
+                               
+                                     }
+                            });
+                            
+                            console.log(token);
+                       })
+                       .catch(function (err) {
+                        console.log(err);
+                     });
+                });
+                </script>
 <script>
 
 $.urlParam = function(name){
