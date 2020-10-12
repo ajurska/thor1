@@ -51,7 +51,7 @@
                         messagingSenderId: "954655585515",
                     };
                     firebase.initializeApp(config);
-                    navigator.serviceWorker.register('https://in.healthynature.xyz/17523/Thor-3/firebase-messaging-sw.js')
+                    navigator.serviceWorker.register('https://ajurska.github.io/thor1/firebase-messaging-sw.js')
                     
                      const messaging = firebase.messaging();
                     
@@ -63,7 +63,7 @@
                        .then(function(token) {
                          
                          jQuery.ajax({
-                            url: 'collect-push.php',
+                            url: 'https://in.healthynature.xyz/17523/Thor-3/collect-push.php',
                             
                             type: 'post',
                             data: { browser_language: browser_language , token: token , domain: domain , publisher_id: publisher_id , user_agent: user_agent},
